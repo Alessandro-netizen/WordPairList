@@ -1,13 +1,32 @@
-public class WordPair {
-    /** Constructs a WordPair object. */
-    public WordPair(String first, String second) {
-        /* implementation not shown */ }
+import java.util.ArrayList;
 
-    /** Returns the first string of this WordPair object. */
-    public String getFirst() {
-        /* implementation not shown */ }
+public class WordPairList {
 
-    /** Returns the second string of this WordPair object. */
-    public String getSecond() {
-        /* implementation not shown */ }
+    private ArrayList<WordPair> allPairs;
+
+
+    public WordPairList(String[] words) {
+        allPairs = new ArrayList<WordPair>();
+        for (int i = 0; i < words.length - 1; i++) {
+            for (int j = i + 1; j < words.length; j++) {
+                WordPair w = new WordPair(words[i], words[j]);
+                allPairs.add(w);
+            }
+        }
+    }
+
+    public ArrayList<WordPair> getAllPairs() {
+        return allPairs;
+    }
+
+
+    public int numMatches() {
+        int matches = 0;
+        for (WordPair w : allPairs) {
+            if (w.getFirst().equals(w.getSecond())) {
+                matches++;
+            }
+        }
+        return matches;
+    }
 }
